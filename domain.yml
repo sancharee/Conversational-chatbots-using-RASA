@@ -1,0 +1,100 @@
+version: '2.0'
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true
+intents:
+- affirm
+- restaurant_search
+- greet
+- sendEmail
+- deny
+- goodbye
+- stop
+- changeLocation
+- changeCuisine
+entities:
+- budget
+- cuisine
+- location
+- mail_id
+slots:
+  cuisine:
+    type: text
+    influence_conversation: true
+  location:
+    type: text
+    influence_conversation: true
+  budget:
+    type: text
+    influence_conversation: true
+  mail_id:
+    type: text
+    influence_conversation: true
+responses:
+  utter_ask_location:
+  - text: In which city are you looking for restaurants?
+  - text: Which location are you looking for?
+  utter_goodbye:
+  - text: goodbye :(
+  - text: Bye-bye
+  - text: Bye! Have a nice day!
+  utter_ask_cuisine:
+  - buttons:
+    - payload: Chinese
+      title: Chinese
+    - payload: Italian
+      title: Italian
+    - payload: South Indian
+      title: South Indian
+    - payload: North Indian
+      title: North Indian
+    - payload: American
+      title: American
+    - payload: Mexican
+      title: Mexican
+    text: what kind of cuisine would you like?
+  utter_ask_budget:
+  - buttons:
+    - payload: Lesser than 300
+      title: low
+    - payload: Rs. 300 to 700
+      title: mid
+    - payload: More than 700
+      title: high
+    text: what's the average budget for two people?
+  utter_deny:
+  - text: sorry! we do not operate in this city.Can you please specify some other location?
+  utter_greet:
+  - text: hey there! How may i help you
+  - text: Hi, How can I help you!
+  - text: Hey, How is it going. How may i help you today?
+  utter_ask_followup:
+  - text: Is there anything else that I can help you with?
+  utter_ask_email:
+  - text: Should I send you details of top 10 restaurants on email?
+  utter_ask_emailID:
+  - text: Can you please share your Email Id?
+  - text: Please share your email address.
+  utter_respond_email_yes:
+  - text: Sent.Please check your email
+  - text: Sent
+  - text: Sent.Bon Apetit!
+  utter_respond_email_no:
+  - text: Okay. Bon Apetit!
+  utter_user_confirm:
+  - text: Is that what you are looking for?
+  - text: Does that resolve your query?
+actions:
+- action_search_restaurants
+- action_send_mail
+- utter_ask_budget
+- utter_ask_cuisine
+- utter_ask_email
+- utter_ask_emailID
+- utter_ask_followup
+- utter_ask_howcanhelp
+- utter_ask_location
+- utter_default
+- utter_deny
+- utter_goodbye
+- utter_greet
